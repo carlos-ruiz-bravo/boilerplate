@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from '../../../node_modules/primeng/components/common/menuitem';
+import { MenuItem } from 'primeng/components/common/menuitem';
 
 @Component({
   selector: 'app-topnavbar',
@@ -13,9 +13,9 @@ export class TopnavbarComponent implements OnInit {
   items: MenuItem[];
 
   ngOnInit() {
-    this.items = [          
+    this.items = [
       {
-        label: 'Detections', icon: 'fa fa-fw fa-list',  routerLink: '/detections',
+        label: 'Detections', icon: 'fa fa-fw fa-list', routerLink: '/detections',
       }
     ];
   }

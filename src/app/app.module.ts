@@ -20,6 +20,8 @@ import {GrowlModule} from 'primeng/growl';
 import {FileUploadModule} from 'primeng/fileupload';
 import {TabViewModule} from 'primeng/tabview';
 import {PanelModule} from 'primeng/panel';
+import {SplitButtonModule} from 'primeng/splitbutton';
+import {InputTextModule} from 'primeng/inputtext';
 
 import {FieldsetModule} from 'primeng/fieldset';
 @NgModule({
@@ -45,7 +47,9 @@ import {FieldsetModule} from 'primeng/fieldset';
     FileUploadModule,
     TabViewModule,
     FieldsetModule,
-    PanelModule
+    PanelModule,
+    SplitButtonModule,
+    InputTextModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy }
