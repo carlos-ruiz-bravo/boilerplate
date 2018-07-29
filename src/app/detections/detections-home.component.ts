@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DisplayDialogComponent } from '../shared/display-dialog.component';
 
 @Component({
   selector: 'app-detections-home',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetectionsHomeComponent implements OnInit {
 
+  @ViewChild(DisplayDialogComponent) dialog: DisplayDialogComponent;
+  display = false;
+  dialogHeader = '';
+
   constructor() { }
+
+  showDialog() {
+    this.dialogHeader = 'Edit User';
+    this.dialog.show();
+  }
 
   ngOnInit() {
   }
+
+
 
 }

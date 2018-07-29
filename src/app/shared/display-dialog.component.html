@@ -1,0 +1,8 @@
+<p-dialog [header]="header" [(visible)]="display" (onHide)="hide()" [modal]="true" [responsive]="true" [width]="1300" [minWidth]="1300"
+[contentStyle]="contentStyle">
+           <ng-content select="[dialog-body]"></ng-content>
+        <p-footer> 
+            <button type="button" pButton icon="fa fa-check" (click)="display=false" label="Save"></button>
+            <button type="button" pButton icon="fa fa-close" (click)="display=false" label="Cancel" class="ui-button-secondary"></button>
+        </p-footer>
+</p-dialog>

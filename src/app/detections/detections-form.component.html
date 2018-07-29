@@ -1,0 +1,94 @@
+<div class="ui-g-12" style="padding: 0;font-size: .9em;">
+    <div class="ui-g-9">
+
+        <p-tabView>
+            <p-tabPanel header="Details">
+                Content 2
+            </p-tabPanel>
+            <p-tabPanel header="References">
+                <div class="ui-g-5">
+                    <p-fieldset legend="File Upload">
+
+                        <p-fileUpload name="file" url="http://localhost:5000/uploader" (onUpload)="onUpload($event)" [showCancelButton]="false" [multiple]="true"
+                            accept=".txt," maxFileSize="1000000" (onError)="onUploadError($event)">
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles.length">
+                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                </ul>
+                            </ng-template>
+                        </p-fileUpload>
+
+                    </p-fieldset>
+                </div>
+                <div class="ui-g-4">
+                    <p-fieldset legend="Url">
+                    </p-fieldset>
+
+                </div>
+                <div class="ui-g-3">
+                    <p-fieldset legend="Free form">
+                    </p-fieldset>
+                </div>
+
+                <div class="ui-g-12">
+                    <p-panel header="Detail" [toggleable]="true">
+                        Content
+                    </p-panel>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Header 3">
+                Content 3
+            </p-tabPanel>
+
+        </p-tabView>
+    </div>
+    <div class="ui-g-3" style="border-left:1px solid #D5D5D5;overflow-x: auto;">
+        <div class="ui-g-12">
+            <h3 style="font-weight: 300;margin: 0;color:#2399e5;">NOTES:</h3>
+            <div class="ui-g-12">
+                <!-- <textarea rows="3" cols="30" style="border-color: #2399e5"></textarea> -->
+                <textarea [rows]="3" [cols]="40" pInputTextarea autoResize="false" style="border-color: #2399e5"></textarea>
+            </div>
+            <div class="ui-g-12">
+                <button type="button" (click)="showDialog()" pButton label="Add"></button>
+            </div>
+
+            <div class="ui-g-12">
+
+                <div style="border-top:1px solid #2399e5; padding-top: 5px;padding-bottom: 5px">
+                    <span style="font-weight: 600;font-size: .9em;color:#2399e5">"Robert, Tom" December 28</span>
+                    <br>
+                    <div style="font-size: .9em;font-style: italic;padding-left:5px">This is a long comment which can contain several rows.. asdfsdfasdsadfsdfas sadfasfasdfsadfds
+                    </div>
+                </div>
+                <div style="border-top:1px solid #2399e5; padding-top: 5px">
+                    <span style="font-weight: 600;font-size: .9em;color:#2399e5">"Robert, Tom" December 28</span>
+                    <br>
+                    <div style="font-size: .9em;font-style: italic;padding-left:5px">This is a long comment which can contain several rows.. asdfsdfasdsadfsdfas sadfasfasdfsadfds
+                    </div>
+                </div>
+                <div style="border-top:1px solid #2399e5; padding-top: 5px">
+                    <span style="font-weight: 600;font-size: .9em;color:#2399e5">"Robert, Tom" December 28</span>
+                    <br>
+                    <div style="font-size: .9em;font-style: italic;padding-left:5px">This is a long comment which can contain several rows.. asdfsdfasdsadfsdfas sadfasfasdfsadfds
+                    </div>
+                </div>
+                <div style="border-top:1px solid #2399e5; padding-top: 5px">
+                    <span style="font-weight: 600;font-size: .9em;color:#2399e5">"Robert, Tom" December 28</span>
+                    <br>
+                    <div style="font-size: .9em;font-style: italic;padding-left:5px">This is a long comment which can contain several rows.. asdfsdfasdsadfsdfas sadfasfasdfsadfds
+                    </div>
+                </div>
+                <div style="border-top:1px solid #2399e5; padding-top: 5px">
+                    <span style="font-weight: 600;font-size: .9em;color:#2399e5">"Robert, Tom" December 28</span>
+                    <br>
+                    <div style="font-size: .9em;font-style: italic;padding-left:5px">This is a long comment which can contain several rows.. asdfsdfasdsadfsdfas sadfasfasdfsadfds
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<p-growl [(value)]="msgs"></p-growl>
