@@ -45,18 +45,37 @@
                 </div> -->
 
                 <div class="ui-g-12">
-                    <p-panel header="Detail" [toggleable]="true" >
+                    <p-panel header="Detection References" [toggleable]="true">
 
-                        <p-table [value]="references" [columns]="referenceCols" dataKey="createdDate"> 
+                        <p-table [value]="references" [columns]="referenceCols" dataKey="createdDate">
                             <ng-template pTemplate="header" let-columns>
                                 <tr>
                                     <th style="width: 2.25em"></th>
                                     <th *ngFor="let col of columns">
                                         {{col.header}}
                                     </th>
+                                    <th style="width:60px;text-align:center">
+                                        action
+                                    </th>
                                 </tr>
                             </ng-template>
-                            <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+                            <ng-template pTemplate="body" let-reference let-expanded="expanded">
+                                <tr>
+                                    <td>
+                                        <a href="#" [pRowToggler]="reference">
+                                            <i [ngClass]="expanded ? 'fa fa-fw fa-chevron-circle-down' : 'fa fa-fw fa-chevron-circle-right'"></i>
+                                        </a>
+                                    </td>
+                                    <td>{{reference.type}}</td>
+                                    <td>{{reference.createdDate}}</td>
+                                    <td>{{reference.createdBy}}</td>
+                                    <td>{{reference.lastUpdatedDate}}</td>
+                                    <td style="width:60px;text-align:center">
+                                        <button type="button" pButton (click)="enEditReference(reference)" icon="fa-edit" pTooltip="Edit" tooltipPosition="top"></button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <!-- <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
                             <tr>
                                 <td>
                                     <a href="#" [pRowToggler]="rowData">
@@ -67,12 +86,12 @@
                                     {{rowData[col.field]}}
                                 </td>
                             </tr>
-                            </ng-template>
+                            </ng-template> -->
                             <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
                                 <tr>
-                                    <td [attr.colspan]="columns.length + 1">
+                                    <td [attr.colspan]="columns.length + 2">
                                         <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
-                                          
+
                                         </div>
                                     </td>
                                 </tr>
@@ -89,52 +108,29 @@
 
         </p-tabView>
     </div>
-    <div class="ui-g-3" style="border-left:1px solid #D5D5D5;overflow-x: auto;">
-        <div class="ui-g-12">
+    <div class="ui-g-3" style="border-left:1px solid #D5D5D5;overflow-x: auto;height: 80vh;">
+        <div class="ui-g-">
             <div class="ui-g-12">
                 <h3 style="font-weight: 300;margin: 0;color:#2399e5;">NOTES:</h3>
             </div>
 
             <div class="ui-g-12">
                 <!-- <textarea rows="3" cols="30" style="border-color: #2399e5"></textarea> -->
-                <textarea [rows]="3" [cols]="40" pInputTextarea autoResize="false" style="border-color: #2399e5"></textarea>
+                <textarea [rows]="3" [cols]="44" pInputTextarea #noteText autoResize="false" style="border-color: #2399e5"></textarea>
             </div>
-            <div class="ui-g-12">
-                <button type="button" (click)="showDialog()" pButton label="Add"></button>
+            <div class="ui-g-12" style="text-align: right">
+                <button type="button" (click)="addNote()" pButton label="Add"></button>
             </div>
 
             <div class="ui-g-12">
 
-                <div style="border-top:1px solid #2399e5; padding-top: 5px;padding-bottom: 5px">
-                    <span style="font-weight: 600;font-size: .9em;color:#2399e5">"Robert, Tom" December 28</span>
+                <div style="border-top:1px solid #2399e5; padding-top: 5px;padding-bottom: 5px" *ngFor="let note of notes">
+
+                    <span style="font-weight: 600;font-size: .9em;color:#2399e5">"{{note.createdBy}}" {{note.createdDate | date : 'medium'}}</span>
                     <br>
-                    <div style="font-size: .9em;font-style: italic;padding-left:5px">This is a long comment which can contain several rows.. asdfsdfasdsadfsdfas sadfasfasdfsadfds
-                    </div>
+                    <div style="font-size: .9em;font-style: italic;padding-left:5px">{{note.text}}</div>
                 </div>
-                <div style="border-top:1px solid #2399e5; padding-top: 5px">
-                    <span style="font-weight: 600;font-size: .9em;color:#2399e5">"Robert, Tom" December 28</span>
-                    <br>
-                    <div style="font-size: .9em;font-style: italic;padding-left:5px">This is a long comment which can contain several rows.. asdfsdfasdsadfsdfas sadfasfasdfsadfds
-                    </div>
-                </div>
-                <div style="border-top:1px solid #2399e5; padding-top: 5px">
-                    <span style="font-weight: 600;font-size: .9em;color:#2399e5">"Robert, Tom" December 28</span>
-                    <br>
-                    <div style="font-size: .9em;font-style: italic;padding-left:5px">This is a long comment which can contain several rows.. asdfsdfasdsadfsdfas sadfasfasdfsadfds
-                    </div>
-                </div>
-                <div style="border-top:1px solid #2399e5; padding-top: 5px">
-                    <span style="font-weight: 600;font-size: .9em;color:#2399e5">"Robert, Tom" December 28</span>
-                    <br>
-                    <div style="font-size: .9em;font-style: italic;padding-left:5px">This is a long comment which can contain several rows.. asdfsdfasdsadfsdfas sadfasfasdfsadfds
-                    </div>
-                </div>
-                <div style="border-top:1px solid #2399e5; padding-top: 5px">
-                    <span style="font-weight: 600;font-size: .9em;color:#2399e5">"Robert, Tom" December 28</span>
-                    <br>
-                    <div style="font-size: .9em;font-style: italic;padding-left:5px">This is a long comment which can contain several rows.. asdfsdfasdsadfsdfas sadfasfasdfsadfds
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

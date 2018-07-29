@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { SplitButton } from 'primeng/splitbutton';
 import { MenuItem } from 'primeng/components/common/menuitem';
 import { FileUpload } from '../../../node_modules/primeng/fileupload';
@@ -11,7 +11,7 @@ export class DetectionsForm {
 
     @ViewChild(FileUpload) fileUpload: FileUpload;
     @ViewChild(SplitButton) splitButton: SplitButton;
-
+    @ViewChild('noteText') noteText: ElementRef;
 
     addType = '';
     referenceCols = [{ field: 'type', header: 'type' },
@@ -25,6 +25,10 @@ export class DetectionsForm {
         }
     ];
 
+    notes = [
+        { createdBy: "John Wayne", text: "This is a long comment which can contain several rows.. asdfsdfasdsadfsdfas sadfasfasdfsadfds",createdDate:"1532893373115"  },
+        { createdBy: "Alex Johnson", text: "This is a long comment which can contain several rows.. asdfsdfasdsadfsdfas sadfasfasdfsadfds" ,createdDate:"1532893373115" }
+    ]
     items: MenuItem[] = [
         {
             label: 'File', icon: 'fa-file', command: () => {
@@ -93,5 +97,14 @@ export class DetectionsForm {
 
     remove(event, i) {
         this.fileUpload.remove(event, i);
+    }
+
+    enEditReference(reference) {
+        this.addType = 'file';
+    }
+
+    addNote() {
+        let value =this.noteText.nativeElement.value
+        this.notes.push({ createdBy: 'User, Current', text: value, createdDate:"1532893373115" });
     }
 }
